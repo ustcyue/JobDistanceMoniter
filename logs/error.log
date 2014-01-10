@@ -1,0 +1,15 @@
+2014-01-08 00:36:21  [ main:0 ] - [ ERROR ]  SQL error when accessing the etl_taskrela_cfg table
+2014-01-09 00:41:05  [ main:0 ] - [ ERROR ]  KeyJob: 500692 will be delayed because job: 10257is still in status 6 at time :2014-01-09 00:41:05. predicted finishTime is 2014-01-09 04:55:41
+2014-01-09 00:41:35  [ main:0 ] - [ ERROR ]  KeyJob: 500692 will be delayed because job: 10257 is still in status 6 at time :2014-01-09 00:41:35. predicted finishTime is 2014-01-09 04:56:11
+2014-01-09 00:42:56  [ main:0 ] - [ ERROR ]  KeyJob: 500692 will be delayed because job: 10257 is still in status 6 at time :2014-01-09 00:42:56. predicted finishTime is 2014-01-09 04:57:32
+2014-01-09 00:44:02  [ main:0 ] - [ ERROR ]  KeyJob: 500692 will be delayed because job: 10257 is still in status 6 at time :2014-01-09 00:44:02. predicted finishTime is 2014-01-09 04:58:38
+2014-01-09 00:52:34  [ main:0 ] - [ ERROR ]  KeyJob: 500692 will be delayed because job: 10257 is still in status 6 at time :2014-01-09 00:52:34. predicted finishTime is 2014-01-09 05:07:10
+2014-01-09 00:53:30  [ main:0 ] - [ ERROR ]  KeyJob: 500692 will be delayed because job: 10257 is still in status 6 at time :2014-01-09 00:53:30. predicted finishTime is 2014-01-09 05:08:06
+2014-01-09 15:12:34  [ main:0 ] - [ ERROR ]  KeyJob: 500132 will be delayed because job: 10257 is still in status 6 at time :2014-01-09 15:12:34. predicted finishTime is 2014-01-09 19:55:58
+2014-01-09 15:12:34  [ main:2 ] - [ ERROR ]  KeyJob: 500692 will be delayed because job: 10257 is still in status 6 at time :2014-01-09 15:12:34. predicted finishTime is 2014-01-09 20:00:04
+2014-01-09 15:16:27  [ main:0 ] - [ ERROR ]  KeyJob: 500132 will be delayed because job: 10257 is still in status 6 at time :2014-01-09 15:16:27. predicted finishTime is 2014-01-09 19:59:51
+2014-01-09 15:16:27  [ main:2 ] - [ ERROR ]  KeyJob: 500692 will be delayed because job: 10257 is still in status 6 at time :2014-01-09 15:16:27. predicted finishTime is 2014-01-09 20:03:57
+2014-01-09 15:58:46  [ main:0 ] - [ ERROR ]  KeyJob: 500132 will be delayed because job: 10257 is still in status 6 at time :2014-01-09 15:58:46. predicted finishTime is 2014-01-09 20:42:10
+2014-01-09 15:58:46  [ main:18 ] - [ ERROR ]  KeyJob: 500692 will be delayed because job: 10257 is still in status 6 at time :2014-01-09 15:58:46. predicted finishTime is 2014-01-09 20:46:16
+2014-01-09 16:42:09  [ main:0 ] - [ ERROR ]  KeyJob: 500132 will be delayed because job: 10257 is still in status 6 at time :2014-01-09 16:42:09. predicted finishTime is 2014-01-09 21:25:33
+2014-01-09 16:42:09  [ main:32 ] - [ ERROR ]  KeyJob: 500692 will be delayed because job: 10257 is still in status 6 at time :2014-01-09 16:42:09. predicted finishTime is 2014-01-09 21:29:39
