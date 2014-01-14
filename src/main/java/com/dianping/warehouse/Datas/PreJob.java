@@ -1,4 +1,4 @@
-package com.dianping.warehouse.main;
+package com.dianping.warehouse.Datas;
 
 import com.dianping.warehouse.util.*;
 import org.joda.time.DateTime;
@@ -13,6 +13,8 @@ import org.joda.time.Duration;
  */
 public class PreJob {
     private int job_id;
+    private String task_name;
+
     private Double distance = null;
     private int status = -999;
     private DateTime beginTime = null;
@@ -20,16 +22,22 @@ public class PreJob {
     public boolean delayed = false;
     private Double jobDelayTime = 0.0;
 
-    public PreJob(int job_id, Double jobCost, double jobstd, int status, String beginTime){
+    public PreJob(int job_id, Double jobCost, double jobstd, int status, String beginTime, String task_name){
         this.job_id = job_id;
         this.status = status;
         this.jobCost = jobCost;
+        this.task_name = task_name;
         if (status == Constants.RUNNING){
             this.beginTime = DateUtils.formatterDatabase.parseDateTime(beginTime);
             delayCalcu(jobstd);
         }
     }
 
+    public PreJob(){
+        this.job_id = 0;
+        this.task_name = "NA";
+        this.status = 1;
+    }
     private void delayCalcu(double jobstd) {
         Duration dur = new Duration(this.beginTime,DateUtils.getCurrentTime());
         if (dur.getStandardSeconds()>this.jobCost.intValue()){
@@ -73,5 +81,9 @@ public class PreJob {
 
     public Double getJobCost() {
         return jobCost;
+    }
+
+    public String getTask_name() {
+        return task_name;
     }
 }

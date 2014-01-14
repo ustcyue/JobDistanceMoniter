@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<constants>
+    <defaultCost>100.0</defaultCost>
+    <defaultRepairTime>3600</defaultRepairTime>
+    <defaultDelayPercent>0.15</defaultDelayPercent>
+    <defaultInterval>60000</defaultInterval>
+    <endTime>17:00:00</endTime>
+    <jarpath>/data/deploy/dp/dpalert</jarpath>
+</constants>

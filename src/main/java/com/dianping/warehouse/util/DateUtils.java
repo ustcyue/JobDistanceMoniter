@@ -18,13 +18,14 @@ public class DateUtils {
         return new DateTime();
     }
     public static DateTime getTargetTime(String process_day, String time){
-        return formatter.parseDateTime(process_day+" "+time).plusDays(1);
+        return formatter.parseDateTime(process_day+" "+time);
     }
-    public static boolean isCallValid(String process_day){
-        DateTime latest = formatter.parseDateTime(process_day+" "+Constants.latest_begin_time);
-        return latest.isBefore(DateUtils.getCurrentTime());
+    public static DateTime getEndTime(String process_day){
+        DateTime latest = formatter.parseDateTime(process_day+" "+Constants.endTime);
+        return latest;
     }
     public static String getDefaultDay(){
-        return getCurrentTime().minusDays(1).toString("yyyy-MM-dd");
+        return getCurrentTime().toString("yyyy-MM-dd");
     }
+
 }

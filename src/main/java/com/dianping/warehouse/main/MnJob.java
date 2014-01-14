@@ -1,10 +1,10 @@
 package com.dianping.warehouse.main;
 
+import com.dianping.warehouse.Datas.PreJob;
 import com.dianping.warehouse.util.Constants;
 import com.dianping.warehouse.util.DateUtils;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
-import org.joda.time.Duration;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,17 +18,17 @@ import java.util.HashMap;
  */
 public class MnJob {
     Logger logger=Logger.getLogger("DpAlert");
-    private int job_id;
-    private boolean isDelayed = false;
-    private PreJob keyPreJob;
+    public int job_id;
+    public String task_name;
+    public PreJob keyPreJob;
     public DateTime warn_time;
-    private DateTime finishTime = null;
+    public DateTime finishTime = null;
+    public boolean is_success = false;
     public HashMap<Integer,Double> distances = new HashMap<Integer, Double>();
-    public ArrayList<Integer> slajobIds = new ArrayList<Integer>();
     HashMap<Integer, Double> jobCosts;
     HashMap<Integer, String> jobRelations;
     HashMap<Integer, Double> jobstds;
-    public MnJob(int taskId, String time, String process_day, HashMap<Integer, Double> jobCosts,HashMap<Integer, Double> jobstds, HashMap<Integer, String> jobRelations){
+    public MnJob(int taskId,String task_name, String time, String process_day, HashMap<Integer, Double> jobCosts,HashMap<Integer, Double> jobstds, HashMap<Integer, String> jobRelations){
         this.job_id = taskId;
         this.warn_time = DateUtils.getTargetTime(process_day, time);
         this.jobCosts = jobCosts;
@@ -40,6 +40,7 @@ public class MnJob {
         this.jobCosts = null;
         this.jobRelations = null;
         this.jobstds = null;
+        this.task_name = task_name;
     }
 
     private void create_distance(int job_id, double pre_distance) {
@@ -70,7 +71,7 @@ public class MnJob {
         }
         else{
             distances.put(job_id,newValue);
-            System.out.println(this.job_id+"  "+job_id+" \t"+temp +"   "+ newValue);
+//            System.out.println(this.job_id+"  "+job_id+" \t"+temp +"   "+ newValue);
         }
     }
 
@@ -82,9 +83,12 @@ public class MnJob {
         return temp;
     }
 
-    public WarnInfo predictFinishTime(ArrayList<PreJob> prejobs){
+    public void predictFinishTime(ArrayList<PreJob> prejobs){
+        if(this.is_success)
+            return;
         DateTime maxfinishTime = DateUtils.formatter.parseDateTime("2010-01-01 00:00:00");
         int flag = 0;
+        this.finishTime = null;
         for(int i = 0; i<prejobs.size(); i++){
             PreJob job = prejobs.get(i);
             DateTime finishTime;
@@ -111,15 +115,11 @@ public class MnJob {
         }
         if(flag == 1){
             this.finishTime = maxfinishTime;
-            System.out.println(keyPreJob.getJob_id()+" "+distances.get(keyPreJob.getJob_id()));
-            if(this.finishTime.isAfter(this.warn_time)){
-                this.isDelayed = true;
-                logger.error("KeyJob: " +job_id+" will be delayed because job: " + keyPreJob.getJob_id()
-                        +" is still in status " + keyPreJob.getStatus() + " at time :" + DateUtils.getCurrentTime().toString(Constants.datepattern)
-                        + ". predicted finishTime is "+finishTime.toString(Constants.datepattern));
-                return new WarnInfo(this.job_id,slajobIds,finishTime,keyPreJob);
-            }
+//            if(this.finishTime.isAfter(this.warn_time)){
+//                logger.error("KeyJob: " +job_id+" will be delayed because job: " + keyPreJob.getJob_id()
+//                        +" is still in status " + keyPreJob.getStatus() + " at time :" + DateUtils.getCurrentTime().toString(Constants.datepattern)
+//                        + ". predicted finishTime is "+finishTime.toString(Constants.datepattern));
+
         }
-        return null;
     }
 }

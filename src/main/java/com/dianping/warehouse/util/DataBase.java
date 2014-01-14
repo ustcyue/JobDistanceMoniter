@@ -14,21 +14,27 @@ public class DataBase {
     private Connection conn = null;
     // 声明ResultSet
     private ResultSet rs;
+
     // 声明Statement
     private Statement stmt;
     // Oracle驱动
     private String className = "com.mysql.jdbc.Driver";
     // Oracle连接字符串
-    private String url = "jdbc:mysql://127.0.0.1:3306/dpalert?useUnicode=true&characterEncoding=utf-8";
+
+    private String url = "jdbc:mysql://10.1.1.220:3306/DianPingDW?useUnicode=true&characterEncoding=utf-8";
+    // 数据库用户名
+    private String userName = "DianPingDW";
+    // 数据库密码
+    private String password = "Diand32adjl3dvDW";
+    /*
+    private String url = "jdbc:mysql://127.0.0.1:3306/dpAlert?useUnicode=true&characterEncoding=utf-8";
     // 数据库用户名
     private String userName = "root";
     // 数据库密码
     private String password = "yxnabc1988";
-
-
+    */
     // 声明DBManager的私有对象db
     private static DataBase db;
-    private static Statement stat;
     /**
      * 创建私有构造函数
      */
@@ -36,7 +42,8 @@ public class DataBase {
         try {
             // 加载驱动
             Class.forName(className);
-            stat = getStmt();
+            conn=getConn();
+            stmt = getStmt();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -74,7 +81,6 @@ public class DataBase {
     public Statement getStmt() {
         try {
             // 获取连接
-            conn=getConn();
             // 获取Statement记录
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
@@ -135,6 +141,13 @@ public class DataBase {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public  Statement getStat() throws SQLException {
+        return conn.createStatement();
+    }
+    public void batchUpdate(Statement stmt) throws SQLException {
+        stmt.executeBatch();
     }
 
 }
